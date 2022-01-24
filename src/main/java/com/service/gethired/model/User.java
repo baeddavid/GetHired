@@ -1,6 +1,6 @@
 package com.service.gethired.model;
 
-import com.example.polls.model.audit.DateAudit;
+import com.service.gethired.model.audit.DateAudit;
 import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
