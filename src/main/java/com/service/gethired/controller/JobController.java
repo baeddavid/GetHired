@@ -2,12 +2,9 @@ package com.service.gethired.controller;
 
 import com.service.gethired.model.*;
 import com.service.gethired.payload.*;
-import com.service.gethired.repository.JobRepository;
-import com.service.gethired.repository.UserRepository;
 import com.service.gethired.security.CurrentUser;
 import com.service.gethired.security.UserPrincipal;
 import com.service.gethired.service.JobService;
-import com.service.gethired.util.AppConstants;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,12 +19,6 @@ import java.net.URI;
 @RestController
 @RequestMapping("/api/jobs")
 public class JobController {
-
-    @Autowired
-    private JobRepository jobRepository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private JobService jobService;
