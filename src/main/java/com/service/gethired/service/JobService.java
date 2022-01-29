@@ -65,16 +65,36 @@ public class JobService {
         job.setReferral(jobRequest.getReferral());
         job.setCreatedBy(currentUser.getId());
 
-        jobRequest.getTags().forEach(tagRequest ->  {
-            job.addTag(new Tag(tagRequest.getTag()));
-        });
+        jobRequest.getTags().forEach(tagRequest -> job.addTag(new Tag(tagRequest.getTag())));
 
         Instant now = Instant.now();
         Instant expirationDateTime = now.plus(Duration.ofDays(jobRequest.getJobLength().getDays()))
                 .plus(Duration.ofHours(jobRequest.getJobLength().getHours()));
-
         job.setExpirationDate(expirationDateTime);
         return jobRepository.save(job);
+    }
+
+    public JobResponse getJobById(Long jobId, UserPrincipal currentUser) {
+        Job job = jobRepository.findById(jobId).orElseThrow(
+                () -> new ResourceNotFoundException("Job", "id", jobId)
+        );
+
+        User creator = userRepository.findById(job.getCreatedBy())
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", job.getCreatedBy()));
+
+        return ModelMapper.mapJobToJobResponse(job, creator);
+    }
+
+    public Job updateJob(JobRequest updatedJob, Long id) {
+        return jobRepository.findById(id)
+                .map(job -> {
+                    job.setJobListingName(updatedJob.getJobListingName());
+                    job.setCompany(updatedJob.getCompany());
+                    job.setReferral(updatedJob.getReferral());
+                    job.setStatus(updatedJob.getStatus());
+                    job.setLink(updatedJob.getLink());
+                    return jobRepository.save(job);
+                }).orElseThrow(() -> new ResourceNotFoundException("Job", "id", id));
     }
 
     private void validatePageNumberAndSize(int page, int size) {
