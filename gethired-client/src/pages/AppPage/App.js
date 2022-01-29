@@ -4,6 +4,8 @@ import { React, Component } from 'react';
 import { Routes , Route, Link } from "react-router-dom";
 import LoginHook from '../../components/LoginComponent/Login.hook';
 import Signup from "../../components/SignupComponent/signup.component";
+import UserJobs from "../../components/UserJobsComponent/UserJobs.component";
+import JobForm from "../../components/JobComponent/NewJob.component";
 
 import AuthService from "../../services/auth.service";
 import UserService from "../../services/user.service";
@@ -29,6 +31,12 @@ class App extends Component {
   }
 
   render() {
+    let userJobs;
+    if(this.state.username) {
+      userJobs = <UserJobs username={this.state.username}/>;
+    } else {
+      userJobs = null;
+    }
     return(
       <div>
         <h1>Welcome to react router!</h1>
@@ -38,6 +46,8 @@ class App extends Component {
           <Route path="about" element={<About />} />
           <Route path="login" element={<LoginHook />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="jobs" element={userJobs} />
+          <Route path="create_job" element={<JobForm />} />
         </Routes>
       </div>
     )
