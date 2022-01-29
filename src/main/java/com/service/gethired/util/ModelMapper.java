@@ -20,7 +20,7 @@ public class ModelMapper {
         jobResponse.setCreationDateTime(job.getCreatedAt());
         Instant now = Instant.now();
         jobResponse.setExpired(job.getExpirationDate().isBefore(now));
-
+        jobResponse.setExpirationDateTime(job.getExpirationDate());
         System.out.println(creator.getEmail());
         UserSummary creatorSummary = new UserSummary(creator.getId(), creator.getUsername(), creator.getName());
         jobResponse.setCreatedBy(creatorSummary);
