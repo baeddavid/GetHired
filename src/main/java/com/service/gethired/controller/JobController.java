@@ -27,7 +27,8 @@ public class JobController {
 
     @PostMapping
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<?> createJob(@Valid @RequestBody JobRequest jobRequest, @CurrentUser UserPrincipal currentUser) {
+    public ResponseEntity<?> createJob(@Valid @RequestBody JobRequest jobRequest,
+                                       @CurrentUser UserPrincipal currentUser) {
         Job job = jobService.createJob(jobRequest, currentUser);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{jobId}")
@@ -35,5 +36,16 @@ public class JobController {
 
         return ResponseEntity.created(location)
                 .body(new ApiResponse(true, "Job Created Succesfully"));
+    }
+    @PutMapping("/update/{jobId}")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<?> updateJob(@Valid @RequestBody JobRequest updateRequest,
+                                       @PathVariable Long jobId) {
+        Job updatedJob = jobService.updateJob(updateRequest, jobId);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest().path("/update/{jobId}")
+                .buildAndExpand(updatedJob.getId()).toUri();
+        return ResponseEntity.created(location)
+                .body(new ApiResponse(true, "Job updated Successfully"));
     }
 }
