@@ -6,6 +6,8 @@ import LoginHook from '../../components/LoginComponent/Login.hook';
 import Signup from "../../components/SignupComponent/signup.component";
 import UserJobs from "../../components/UserJobsComponent/UserJobs.component";
 import JobForm from "../../components/JobComponent/NewJob.component";
+import NewJobHook from '../../components/JobComponent/NewJob.hook';
+import EditJobHook from '../../components/EditComponent/EditJob.hook';
 
 import AuthService from "../../services/auth.service";
 import UserService from "../../services/user.service";
@@ -48,6 +50,7 @@ class App extends Component {
           <Route path="signup" element={<Signup />} />
           <Route path="jobs" element={userJobs} />
           <Route path="create_job" element={<JobForm />} />
+          <Route path="edit_job/:jobId" element={<EditJobHook/>} />
         </Routes>
       </div>
     )
