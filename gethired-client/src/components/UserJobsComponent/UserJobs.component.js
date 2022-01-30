@@ -12,15 +12,19 @@ export default class UserJobs extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props);
         UserService.getUserJobs(this.props.username).then(
             response => {
-                console.log(response.data.content)
                 this.setState({
                     jobs: response.data.content
                 });
             }
         );
+    }
+
+    deleteJob(jobId) {
+        UserService.deleteJob(jobId);
+        const updatedJobs = this.state.jobs.filter(job => job.id !== jobId);
+        this.setState({jobs: updatedJobs});
     }
 
     render() {
@@ -46,6 +50,7 @@ export default class UserJobs extends Component {
                                         tags: job.tags,
                                         jobLength: job.jobLength
                                     }}>edit job</Link>
+                                <button onClick={() => { this.deleteJob(job.id); }}>Delete</button>
                             </li>
                             ))}
                         </ul>
