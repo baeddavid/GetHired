@@ -2,7 +2,7 @@ package com.service.gethired.config;
 
 import com.service.gethired.security.CustomUserDetailsService;
 import com.service.gethired.security.JwtAuthenticationEntryPoint;
-import com.service.gethired.secuirty.JwtAuthenticationFilter;
+import com.service.gethired.security.JwtAuthenticationFilter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

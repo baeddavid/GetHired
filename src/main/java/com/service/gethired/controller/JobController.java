@@ -37,7 +37,15 @@ public class JobController {
         return ResponseEntity.created(location)
                 .body(new ApiResponse(true, "Job Created Succesfully"));
     }
-    @PutMapping("/update/{jobId}")
+
+    @GetMapping("/{jobId}")
+    @PreAuthorize("hasRole('USER')")
+    public JobResponse getJobById(@PathVariable Long jobId,
+                                  @CurrentUser UserPrincipal currentUser) {
+        return jobService.getJobById(jobId, currentUser);
+    }
+
+    @PutMapping("/{jobId}")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> updateJob(@Valid @RequestBody JobRequest updateRequest,
                                        @PathVariable Long jobId) {
@@ -47,5 +55,11 @@ public class JobController {
                 .buildAndExpand(updatedJob.getId()).toUri();
         return ResponseEntity.created(location)
                 .body(new ApiResponse(true, "Job updated Successfully"));
+    }
+
+    @DeleteMapping("/{jobId}")
+    @PreAuthorize("hasRole('USER')")
+    public void deleteJob(@PathVariable Long jobId) {
+        jobService.deleteJob(jobId);
     }
 }

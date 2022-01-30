@@ -97,6 +97,10 @@ public class JobService {
                 }).orElseThrow(() -> new ResourceNotFoundException("Job", "id", id));
     }
 
+    public void deleteJob(Long id) {
+        jobRepository.deleteById(id);
+    }
+
     private void validatePageNumberAndSize(int page, int size) {
         if(page < 0) {
             throw new BadRequestException("Page number cannot be less than zero.");
