@@ -40,52 +40,15 @@ class App extends Component {
       userJobs = null;
     }
     return(
-      <div>
-        <h1>Welcome to react router!</h1>
-        <button onClick={ () => console.log(this.state)}>Print State</button>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="about" element={<About />} />
           <Route path="login" element={<LoginHook />} />
           <Route path="signup" element={<Signup />} />
           <Route path="jobs" element={userJobs} />
           <Route path="create_job" element={<JobForm />} />
           <Route path="edit_job/:jobId" element={<EditJobHook/>} />
         </Routes>
-      </div>
     )
   }
-}
-
-function Home() {
-  return (
-    <>
-      <main>
-        <h2>Welcome to the homepage!</h2>
-        <p>You can do this, I believe in you.</p>
-      </main>
-      <nav>
-        <Link to="/about">About</Link>
-      </nav>
-    </>
-  );
-}
-
-function About() {
-  return (
-    <>
-      <main>
-        <h2>Who are we?</h2>
-        <p>
-          That feels like an existential question, don't you
-          think?
-        </p>
-      </main>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
-    </>
-  );
 }
 
 export default App;
