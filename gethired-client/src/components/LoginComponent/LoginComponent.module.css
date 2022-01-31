@@ -1,0 +1,40 @@
+.userCard {
+    height: 400px;
+    width: 350px;
+    margin-top: 20%;
+    background-color: rgb(250, 180, 100);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+
+.icon{
+    margin-right: 10%;
+    height: 38px;
+}
+
+.login {
+    margin: 25px 0 25px 0;
+}
+
+html, body, .background>div {
+    height: 100%;
+    background-size: cover;
+    background-color:#8b4513;
+}
+
+.title {
+    margin-bottom: 15%;
+}
+
+.userCard:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
