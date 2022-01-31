@@ -25,10 +25,14 @@
     margin: 25px 0 25px 0;
 }
 
-html, body, .background>div {
-    height: 100%;
+.badCredentials {
+    margin-top: 5%;
+}
+
+#root, .background {
+    height: 100vh;
     background-size: cover;
-    background-color:#8b4513;
+    background-image: url("./working.jpg")
 }
 
 .title {

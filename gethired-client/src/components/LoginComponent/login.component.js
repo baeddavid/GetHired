@@ -11,16 +11,6 @@ import { faKey } from "@fortawesome/fontawesome-free-solid";
 
 import AuthService from "../../services/auth.service";
 
-const required = value => {
-    if (!value) {
-        return (
-            <div className="alert alert-danger" role="alert">
-                This field is required!
-            </div>
-        );
-    }
-};
-
 export default class Login extends Component {
     constructor(props) {
         super(props);
@@ -75,7 +65,7 @@ export default class Login extends Component {
 
                     this.setState({
                         loading: false,
-                        message: resMessage
+                        message: "Incorrect Login"
                     });
                 }
             );
@@ -90,77 +80,77 @@ export default class Login extends Component {
         return (
             <div className={styles.background}>
                 <div className="container col-xs-1" align="center" id={styles.center}>
-                    <div className={styles.userCard}>
-                        <div>
-                            <div className="d-flex justify-content-center">
-                                <h2 className={styles.title} style={{ color: "white" }}>GetHired</h2>
-                            </div>
-                        </div>
-                        <Form
-                            onSubmit={this.handleLogin}
-                            ref={c => {
-                                this.form = c;
-                            }}
-                        >
-                            <div className="input-group mb-3">
-                                <div className="input-group-append">
-                                    <span className={`input-group-text ${styles.icon}`}>
-                                        <FontAwesomeIcon icon={faUser} style={{ color: "white" }} />
-                                    </span>
+                    <div className="d-flex justify-content-center h-100">
+                        <div className={styles.userCard}>
+                            <div>
+                                <div className="d-flex justify-content-center">
+                                    <h2 className={styles.title} style={{ color: "white" }}>GetHired</h2>
                                 </div>
-                                <Input
-                                    type="text"
-                                    className="form-control"
-                                    name="username"
-                                    value={this.state.username}
-                                    onChange={this.onChangeUsername}
-                                    validations={[required]}
-                                    placeholder="Username or Email"
-                                />
                             </div>
-                            <div className="input-group mb-2">
-                                <div className="input-group-append">
-                                    <span className={`input-group-text ${styles.icon}`}>
-                                        <FontAwesomeIcon icon={faKey} style={{ color: "white" }} />
-                                    </span>
-                                </div>
-                                <Input
-                                    type="password"
-                                    className="form-control"
-                                    name="password"
-                                    value={this.state.password}
-                                    onChange={this.onChangePassword}
-                                    validations={[required]}
-                                    placeholder="Password"
-                                />
-                            </div>
-                            <div className="d-flex justify-content-center mt-3 login_container">
-                                <button className="btn btn-success" id={styles.button}>Log in</button> <br />
-                            </div>
-                            {this.state.message && (
-                                <div className="form-group">
-                                    <div className="alert alert-danger" role="alert">
-                                        {this.state.message}
-                                    </div>
-                                </div>
-                            )}
-                            <CheckButton
-                                style={{ display: "none" }}
+                            <Form
+                                onSubmit={this.handleLogin}
                                 ref={c => {
-                                    this.checkBtn = c;
+                                    this.form = c;
                                 }}
-                            />
-                        </Form>
-                        <div className="mt-4">
-                            <div className="d-flex justify-content-center links">
-                                Don't have an account? 
-                            </div>
-                            <div className="d-flex justify-content-center links">
-                                <Link to="/signup">
-                                    <div className="ml-2" style={{ color: "white" }}>
-                                        Sign Up
+                            >
+                                <div className="input-group mb-3">
+                                    <div className="input-group-append">
+                                        <span className={`input-group-text ${styles.icon}`}>
+                                            <FontAwesomeIcon icon={faUser} style={{ color: "white" }} />
+                                        </span>
                                     </div>
-                                </Link>
+                                    <Input
+                                        type="text"
+                                        className="form-control"
+                                        name="username"
+                                        value={this.state.username}
+                                        onChange={this.onChangeUsername}
+                                        placeholder="Username or Email"
+                                    />
+                                </div>
+                                <div className="input-group mb-2">
+                                    <div className="input-group-append">
+                                        <span className={`input-group-text ${styles.icon}`}>
+                                            <FontAwesomeIcon icon={faKey} style={{ color: "white" }} />
+                                        </span>
+                                    </div>
+                                    <Input
+                                        type="password"
+                                        className="form-control"
+                                        name="password"
+                                        value={this.state.password}
+                                        onChange={this.onChangePassword}
+                                        placeholder="Password"
+                                    />
+                                </div>
+                                <div className="d-flex justify-content-center mt-3 login_container">
+                                    <button className="btn btn-success" id={styles.button}>Log in</button> <br />
+                                </div>
+                                {this.state.message && (
+                                    <div className="form-group">
+                                        <div className="alert alert-danger" className={`alert alert-danger ${styles.badCredentials}`} role="alert">
+                                            {this.state.message}
+                                        </div>
+                                    </div>
+                                )}
+                                <CheckButton
+                                    style={{ display: "none" }}
+                                    ref={c => {
+                                        this.checkBtn = c;
+                                    }}
+                                />
+                            </Form>
+                            <div className="mt-4">
+                                <div className="d-flex justify-content-center links">
+                                    Don't have an account?
+                                </div>
+                                <div className="d-flex justify-content-center links">
+                                    <Link to="/signup">
+                                        <div className="ml-2" style={{ color: "white" }}>
+                                            Sign Up
+                                        </div>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>
